@@ -317,8 +317,8 @@ reg.predict(new_data)
 from sklearn.ensemble import RandomForestRegressor
 from sklearn.model_selection import train_test_split
 from sklearn.metrics import mean_squared_error ,r2_score
-X = newcopydata.drop(['charges'], axis=1)  
-Y= newcopydata['charges']
+X = newcopydata.drop(['charges'], axis=1).astype(str)  
+Y= newcopydata['charges'].astype(str)
 
 
 # In[47]:
