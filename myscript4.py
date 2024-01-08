@@ -13,7 +13,7 @@ data
 
 
 copydata=data.copy()
-copydata
+copydata.astype(str)
 
 
 # In[3]:
@@ -34,7 +34,7 @@ copydata.dtypes
 copydata['sex']=copydata['sex'].map({'male':0,'female':1})
 copydata['smoker']=copydata['smoker'].map({'yes':1,'no':0})
 copydata['region']=copydata['region'].map({'northwest':0, 'northeast':1,'southeast':2,'southwest':3})
-copydata
+copydata.astype(str)
 
 
 # In[6]:
@@ -181,7 +181,7 @@ copydata[copydata['bmi']>higher]
 
 
 newcopydata=copydata[copydata['bmi']<higher]
-newcopydata
+newcopydata.astype(str)
 
 
 # In[28]:
@@ -213,7 +213,7 @@ newcopydata['age'].skew()
 # In[32]:
 
 
-newcopydata
+newcopydata.astype(str)
 
 
 # In[33]:
@@ -233,8 +233,8 @@ sns.heatmap(data=newcopydata.corr(),annot=True)
 
 #linear regression model 
 from sklearn.model_selection import train_test_split,cross_val_score
-x=newcopydata.drop(['charges'],axis=1)
-y=newcopydata[['charges']]
+x=newcopydata.drop(['charges'],axis=1).astype(str)
+y=newcopydata[['charges']].astype(str)
 x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2)
 
 
@@ -303,10 +303,10 @@ dump(reg,open('insurancemodelf.pkl','wb'))
 # In[45]:
 
 
-new_data=pd.DataFrame({'age':19,'sex':'female','bmi':27.9,'children':0,'smoker':'yes','region':'southwest'},index=[0])
-new_data['smoker']=new_data['smoker'].map({'yes':1,'no':0})
-new_data['sex']=new_data['sex'].map({'male':0,'female':1})
-new_data['region']=new_data['region'].map({'northwest':0,'northeast':1,'southwest':2,'southeast':3})
+new_data=pd.DataFrame({'age':19,'sex':'female','bmi':27.9,'children':0,'smoker':'yes','region':'southwest'},index=[0]).astype(str)
+new_data['smoker']=new_data['smoker'].map({'yes':1,'no':0}).astype(str)
+new_data['sex']=new_data['sex'].map({'male':0,'female':1}).astype(str)
+new_data['region']=new_data['region'].map({'northwest':0,'northeast':1,'southwest':2,'southeast':3}).astype(str)
 
 reg.predict(new_data)
 
@@ -378,10 +378,10 @@ dump(rf_regressor,open('insurancemodelf.pkl','wb'))
 # In[55]:
 
 
-new_data1=pd.DataFrame({'age':19,'sex':'female','bmi':27.9,'children':0,'smoker':'yes','region':'southwest'},index=[0])
-new_data1['smoker']=new_data1['smoker'].map({'yes':1,'no':0})
-new_data1['sex']=new_data1['sex'].map({'male':0,'female':1})
-new_data1['region']=new_data1['region'].map({'northwest':0,'northeast':1,'southwest':2,'southeast':3})
+new_data1=pd.DataFrame({'age':19,'sex':'female','bmi':27.9,'children':0,'smoker':'yes','region':'southwest'},index=[0]).astype(str)
+new_data1['smoker']=new_data1['smoker'].map({'yes':1,'no':0}).astype(str)
+new_data1['sex']=new_data1['sex'].map({'male':0,'female':1}).astype(str)
+new_data1['region']=new_data1['region'].map({'northwest':0,'northeast':1,'southwest':2,'southeast':3}).astype(str)
 
 rf_regressor.predict(new_data1)
 
@@ -390,8 +390,8 @@ rf_regressor.predict(new_data1)
 
 
 from sklearn.ensemble import GradientBoostingRegressor
-X = newcopydata.drop(['charges'], axis=1)  
-Y= newcopydata['charges']
+X = newcopydata.drop(['charges'], axis=1).astype(str)  
+Y= newcopydata['charges'].astype(str)
 
 x1train,x1test,y1train,y1test=train_test_split(X,Y,test_size=0.2,random_state=i)
 
@@ -459,10 +459,11 @@ dump(grad,open('insurancemodel.pkl','wb'))
 # In[65]:
 
 
-new_data1=pd.DataFrame({'age':19,'sex':'female','bmi':27.9,'children':0,'smoker':'yes','region':'southwest'},index=[0])
-new_data1['smoker']=new_data1['smoker'].map({'yes':1,'no':0})
-new_data1['sex']=new_data1['sex'].map({'male':0,'female':1})
-new_data1['region']=new_data1['region'].map({'northwest':0,'northeast':1,'southwest':2,'southeast':3})
+Y= newcopydata['charges']
+new_data1=pd.DataFrame({'age':19,'sex':'female','bmi':27.9,'children':0,'smoker':'yes','region':'southwest'},index=[0]).astype(str)
+new_data1['smoker']=new_data1['smoker'].map({'yes':1,'no':0}).astype(str)
+new_data1['sex']=new_data1['sex'].map({'male':0,'female':1}).astype(str)
+new_data1['region']=new_data1['region'].map({'northwest':0,'northeast':1,'southwest':2,'southeast':3}).astype(str)
 
 grad.predict(new_data1)
 
