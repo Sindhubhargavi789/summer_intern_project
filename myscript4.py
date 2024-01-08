@@ -500,7 +500,7 @@ def main():
 
     # Create a DataFrame from user inputs
     input_data = pd.DataFrame({'age': [age], 'sex': [sex],'bmi': [bmi], 'children': [children],  'smoker': [smoker], 'region': [region_encoded]})
-     input_data = input_data.astype(str)
+    input_data = input_data.astype(str)
 
 
     # Make prediction
